@@ -1,0 +1,13 @@
+error[E0277]: `std::rc::Rc<usize>` cannot be sent between threads safely
+ --> $DIR/compile-fail-0.rs:7:6
+  |
+7 | impl test_crate::Sendable for NotSend {}
+  |      ^^^^^^^^^^^^^^^^^^^^ `std::rc::Rc<usize>` cannot be sent between threads safely
+  |
+ ::: D:\\a\\trybuild\\trybuild\\test-workspace\\src\\lib.rs:1:21
+  |
+1 | pub trait Sendable: Send {}
+  |                     ---- required by this bound in `test_crate::Sendable`
+  |
+  = help: within `NotSend`, the trait `std::marker::Send` is not implemented for `std::rc::Rc<usize>`
+  = note: required because it appears within the type `NotSend`
